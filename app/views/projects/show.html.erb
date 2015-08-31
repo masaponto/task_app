@@ -1,0 +1,47 @@
+<%- model_class = Project -%>
+<div class="page-header">
+<!-- 	<h1><%=t '.title', :default => model_class.model_name.human.titleize %>< -->
+<!-- /h1> -->
+	<h1><%= @project.title %></h1>
+
+</div>
+
+<ul>
+	<% @project.tasks.each do |task| %>
+		<li>
+			<%= check_box_tag '', '', task.done, {'data-id' => task.id, 'data-project_id' => task.project_id} %>
+			<%= task.title %>
+			<%= link_to "[Delete]", project_task_path(task.project_id, task.id), method: :delete, data: {confirm: "are you shre?" } %>
+
+		</li>
+	<% end %>
+</ul>
+
+
+<li>
+	<%= form_for [@project, @project.tasks.build] do |f| %>
+		<%= f.text_field :title %>
+		<%= f.submit %>
+	<% end %>
+</li>
+
+
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              projects_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_project_path(@project), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              project_path(@project),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+
+
+<script>
+ $(function() {
+	 $("input[type=checkbox]").click(function() {
+		 $.post('/projects/'+$(this).data('project_id')+'/tasks/'+$(this).data('id') + '/toggle') });
+	 });
+
+</script>
