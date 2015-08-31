@@ -6,16 +6,29 @@
 
 </div>
 
-<ul>
-	<% @project.tasks.each do |task| %>
-		<li>
-			<%= check_box_tag '', '', task.done, {'data-id' => task.id, 'data-project_id' => task.project_id} %>
-			<%= task.title %>
-			<%= link_to "[Delete]", project_task_path(task.project_id, task.id), method: :delete, data: {confirm: "are you shre?" } %>
 
-		</li>
-	<% end %>
-</ul>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th><%= model_class.human_attribute_name(:title) %></th>
+					<th><%=t '.actions', :default => t("helpers.actions") %></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @project.tasks.each do |task| %>
+					<tr>
+						<td>
+							<%= check_box_tag '', '', task.done, {'data-id' => task.id, 'data-project_id' => task.project_id} %>
+ 							<%= task.title %>
+						</td>
+						<td>
+							<%= link_to "Delete", project_task_path(task.project_id, task.id), method: :delete, data: {confirm: "Are you shre?" }, :class => 'btn btn-xs btn-danger' %>
+						</td>
+					</tr>
+				<% end %>
+
+			</tbody>
+		</table>
 
 
 <li>
