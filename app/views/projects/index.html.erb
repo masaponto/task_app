@@ -1,16 +1,9 @@
 <%- model_class = Project -%>
 
-
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
 
-	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell mdl-cell--10-col">
-		<thead>
-			<tr>
-				<th> <%= model_class.human_attribute_name(:title) %> </th>
-				<th><%=t '.actions', :default => t("helpers.actions") %></th>
-			</tr>
-		</thead>
+	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell mdl-cell--10-col mdl-cell--4-col-phone">
 
 		<tbody>
 			<% @projects.each do |project| %>
@@ -41,10 +34,10 @@
     <div class="mdl-cell mdl-cell--10-col"></div>
 
 	<div class="mdl-cell mdl-cell--1-col">
-		<%= link_to 'add', new_project_path,
+		<%= link_to "add", new_project_path,
 		:class => 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored material-icons' %>
 	</div>
 
-
 	<div class="mdl-cell mdl-cell--1-col"></div>
+
 </div>
