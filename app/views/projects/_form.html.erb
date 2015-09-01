@@ -1,31 +1,34 @@
-<%= form_for @project, :html => { :class => "form-horizontal project" } do |f| %>
+<%= form_for @project do |f| %>
 
-    <% if @project.errors.any? %>
-		<div id="error_expl" class="panel panel-danger">
-			<div class="panel-heading">
-				<h3 class="panel-title"><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h3>
+	<div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--1-col"></div>
+
+		<form action="#">
+
+			<div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--10-col">
+				<%= f.text_field :title, :class => 'mdl-textfield__input' %>
+				<%= f.label :title, :class => 'mdl-textfield__label' %>
 			</div>
-			<div class="panel-body">
-				<ul>
-					<% @project.errors.full_messages.each do |msg| %>
-						<li><%= msg %></li>
-					<% end %>
-				</ul>
-			</div>
-		</div>
-	<% end %>
 
+			<% if @project.errors.any? %>
+				<%= @project.errors.messages[:title][0] %>
+			<% end %>
+		</form>
 
-	<div class="control-group">
-		<%= f.label :title, :class => 'control-label' %>
-		<div class="controls">
-			<%= f.text_field :title, :class => 'mdl-textfield__input' %>
-		</div>
-
-	<%= f.submit nil, :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' %>
-	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-        projects_path, :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' %>
-
-
+		<div class="mdl-cell mdl-cell--1-col"></div>
 	</div>
+
+	<div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--9-col"></div>
+
+		<div class="mdl-cell mdl-cell--2-col">
+			<%= f.submit  :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' %>
+
+			<%= link_to 'cancel', projects_path,
+			:class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' %>
+		</div>
+
+		<div class="mdl-cell mdl-cell--1-col"></div>
+	</div>
+
 <% end %>

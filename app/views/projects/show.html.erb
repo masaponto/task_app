@@ -1,41 +1,69 @@
 <%- model_class = Project -%>
-<div class="page-header">
 
+<div class="page-header">
 	<h1><%= @project.title %></h1>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col"></div>
+	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell mdl-cell--10-col">
+
+		<tbody>
+			<% @project.tasks.each do |task| %>
+				<tr>
+					<td>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+							<%= check_box_tag '', '', task.done, {'data-id' => task.id, 'data-project_id' => task.project_id, :class => "mdl-checkbox__input"}%>
+						</label>
+						<%= task.title %>
+					</td>
+					<td>
+						<%= link_to "clear", project_task_path(task.project_id, task.id), method: :delete, data: {confirm: "are you sure?"},
+						:class => 'mdl-button mdl-js-button mdl-button--icon material-icons' %>
+					</td>
+				</tr>
+			<% end %>
+
+		</tbody>
+	</table>
+
+	<div class="mdl-cell mdl-cell--1-col"></div>
 
 </div>
 
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-	<thead>
-		<tr>
-			<th><%= model_class.human_attribute_name(:title) %></th>
-			<th><%=t '.actions', :default => t("helpers.actions") %></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @project.tasks.each do |task| %>
-			<tr>
-				<td>
-					<%= check_box_tag '', '', task.done, {'data-id' => task.id, 'data-project_id' => task.project_id} %>
- 					<%= task.title %>
-				</td>
-				<td>
-					<%= link_to "delete", project_task_path(task.project_id, task.id), method: :delete, data: {confirm: "are you sure?"},
-					:class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'%>
-
-				</td>
-			</tr>
-		<% end %>
-
-	</tbody>
-</table>
 
 
 <%= form_for [@project, @project.tasks.build] do |f| %>
-	<%= f.text_field :title, :class => 'mdl-textfield mdl-js-textfield ' %>
-	<%= f.submit  :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'%>
-<% end %>
+	<div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--1-col"></div>
 
+		<form action="#">
+
+			<div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--10-col">
+				<%= f.text_field :title, :class => 'mdl-textfield__input' %>
+				<%= f.label :title, :class => 'mdl-textfield__label' %>
+			</div>
+		</form>
+
+		<div class="mdl-cell mdl-cell--1-col"></div>
+	</div>
+
+
+	<div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--9-col"></div>
+		<div class="mdl-cell mdl-cell--2-col">
+
+			<%= f.submit :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' %>
+
+			<%= link_to t('.back', :default => t("helpers.links.back")),
+				projects_path, :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect'  %>
+
+		</div>
+
+		<div class="mdl-cell mdl-cell--1-col"></div>
+	</div>
+
+<% end %>
 
 <script>
  $(function() {
@@ -44,14 +72,3 @@
 	 });
  });
 </script>
-
-
-<%= link_to t('.back', :default => t("helpers.links.back")),
-	projects_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-	edit_project_path(@project), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-	project_path(@project),
-	:method => 'delete',
-	:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-		:class => 'btn btn-danger' %>

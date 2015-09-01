@@ -2,43 +2,49 @@
 
 
 <div class="mdl-grid">
-	<div class="mdl-cell mdl-cell--10-col">
+    <div class="mdl-cell mdl-cell--1-col"></div>
 
-		<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-			<thead>
+	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell mdl-cell--10-col">
+		<thead>
+			<tr>
+				<th> <%= model_class.human_attribute_name(:title) %> </th>
+				<th><%=t '.actions', :default => t("helpers.actions") %></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @projects.each do |project| %>
 				<tr>
-					<th> <%= model_class.human_attribute_name(:title) %> </th>
-					<th><%=t '.actions', :default => t("helpers.actions") %></th>
+					<td class="mdl-data-table__cell--non-numeric">
+						<span class ="mdl-badge" data-badge = <%= project.tasks.unfinished.count %>/<%= project.tasks.count %> >
+							<%= link_to project.title, project_path(project.id) %>
+						</span>
+					</td>
+
+					<td >
+						<%= link_to "mode_edit", edit_project_path(project.id) ,
+						:class => 'mdl-button mdl-js-button mdl-button--icon material-icons' %>
+
+						<%= link_to "clear", project_path(project.id), method: :delete, data: {confirm: "are you sure?"},
+						:class => 'mdl-button mdl-js-button mdl-button--icon material-icons' %>
+					</td>
 				</tr>
-			</thead>
+			<% end %>
+		</tbody>
+	</table>
 
-			<tbody>
-				<% @projects.each do |project| %>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">
-							<span class ="mdl-badge" data-badge = <%= project.tasks.unfinished.count %>/<%= project.tasks.count %> >
-								<%= link_to project.title, project_path(project.id) %>
-							</span>
-						</td>
+	<div class="mdl-cell mdl-cell--1-col"></div>
 
-						<td class="mdl-data-table__cell--non-numeric">
+</div>
 
-							<%= link_to "edit", edit_project_path(project.id) ,
-							:class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' %>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--10-col"></div>
 
-							<%= link_to "delete", project_path(project.id), method: :delete, data: {confirm: "are you sure?"},
-							:class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'%>
-
-						</td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-
-
-		<%= link_to t('.new', :default => t("helpers.links.new")),
-			new_project_path,
-			:class => 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colore' %>
-
+	<div class="mdl-cell mdl-cell--1-col">
+		<%= link_to 'add', new_project_path,
+		:class => 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored material-icons' %>
 	</div>
+
+
+	<div class="mdl-cell mdl-cell--1-col"></div>
 </div>
