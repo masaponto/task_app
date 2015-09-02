@@ -1,10 +1,18 @@
 <%- model_class = Project -%>
 
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col"></div>
+	<div class="mdl-cell mdl-cell--10-col">
+		<h2>Projects</h2>
+	</div>
+	<div class="mdl-cell mdl-cell--1-col"></div>
+</div>
+
 
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
 
-	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell mdl-cell--10-col mdl-cell--4-col-phone">
+	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell mdl-cell--10-col mdl-cell--4-col-phone mdl-cell--8-col-tablet">
 
 		<tbody>
 			<% @projects.each do |project| %>
@@ -27,12 +35,14 @@
 		</tbody>
 	</table>
 
-	<div class="mdl-cell mdl-cell--1-col">
+	<div class="mdl-cell--3-col-phone mdl-cell--7-col-tablet"> </div>
+	<div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-phone mdl-cell--1-col-tablet">
 		<a href="projects/new">
-			<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" >
+			<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--2dp" >
 				<i class="material-icons">add</i>
 			</button>
 		</a>
 	</div>
+
 
 </div>

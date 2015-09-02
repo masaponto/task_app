@@ -1,8 +1,16 @@
 <%- model_class = Project -%>
 
-<div class="page-header">
-	<h1><%= @project.title %></h1>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col"></div>
+	<div class="mdl-cell mdl-cell--10-col">
+		<div class="page-header">
+			<h2><%= @project.title %></h2>
+		</div>
+	</div>
+	<div class="mdl-cell mdl-cell--1-col"></div>
 </div>
+
+
 
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
@@ -43,7 +51,7 @@
 
 		<form action="#">
 
-			<div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--10-col">
+			<div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--10-col mdl-cell--4-col-phone mdl-cell--8-col-tablet">
 				<%= f.text_field :title, :class => 'mdl-textfield__input' %>
 				<%= f.label :title, :class => 'mdl-textfield__label' %>
 			</div>
@@ -54,8 +62,8 @@
 
 
 	<div class="mdl-grid">
-		<div class="mdl-cell mdl-cell--9-col"></div>
-		<div class="mdl-cell mdl-cell--2-col">
+		<div class="mdl-cell mdl-cell--9-col mdl-cell--2-col-phone mdl-cell--5-col-tablet"></div>
+		<div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-phone mdl-cell--2-col-tablet">
 
 			<%= f.submit :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' %>
 
@@ -64,7 +72,7 @@
 
 		</div>
 
-		<div class="mdl-cell mdl-cell--1-col"></div>
+		<div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet"></div>
 	</div>
 
 <% end %>
