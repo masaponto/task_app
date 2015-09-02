@@ -1,7 +1,20 @@
 # Task app
   To do app using Ruby on Rails
+  This software is under construction
 
-# License
+## Development Environment 
+- ruby 2.2.3p173
+- Bundler 1.10.6
+
+## Install and Run
+```
+$ bundle install --path vendor/bundle  
+$ bin/rake db:migrate RAILS_ENV=development  
+$ bundle exec rails server  
+```
+
+## License
+
 - This software uses Font Awesome,  
   - code of which is licensed by the MIT License.  
     http://opensource.org/licenses/MIT  
@@ -18,5 +31,5 @@ http://www.apache.org/licenses/LICENSE-2.0
 http://opensource.org/licenses/MIT
 
 
-# Reference
+## Reference
 - http://dotinstall.com/lessons/basic_rails_v2
