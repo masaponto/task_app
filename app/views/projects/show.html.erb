@@ -6,17 +6,22 @@
 
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
+
 	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell mdl-cell--10-col">
 
 		<tbody>
 			<% @project.tasks.each do |task| %>
 				<tr>
-					<td>
+					<td class="mdl-data-table__cell--non-numeric">
 						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-							<%= check_box_tag '', '', task.done, {'data-id' => task.id, 'data-project_id' => task.project_id, :class => "mdl-checkbox__input"}%>
+							<%= check_box_tag '', '', task.done,
+							{'data-id' => task.id, 'data-project_id' => task.project_id, :class => "mdl-checkbox__input" } %>
+							<span class ="mdl-checkbox__label">
+								<%= label_tag '', task.title %>
+							</span>
 						</label>
-						<%= task.title %>
 					</td>
+
 					<td>
 						<%= link_to "clear", project_task_path(task.project_id, task.id), method: :delete, data: {confirm: "are you sure?"},
 						:class => 'mdl-button mdl-js-button mdl-button--icon material-icons' %>
@@ -30,7 +35,6 @@
 	<div class="mdl-cell mdl-cell--1-col"></div>
 
 </div>
-
 
 
 <%= form_for [@project, @project.tasks.build] do |f| %>
