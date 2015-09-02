@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
 		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 		<%= javascript_include_tag "application" %>
 
 	</head>
@@ -23,23 +24,25 @@
 					<!-- Add spacer, to align navigation to the right -->
 					<div class="mdl-layout-spacer"></div>
 					<!--Navigation. We hide it in small screens. -->
-					 <nav class="mdl-navigation mdl-layout--large-screen-only">
-
-					 	<a class="mdl-navigation__link" href="">Link</a>
-					 </nav>
+					<nav class="mdl-navigation mdl-layout--large-screen-only">
+						<a href="https://twitter.com/masaponto"><i class="fa fa-twitter"></i> @masaponto</a>
+					</nav>
 				</div>
 			</header>
+
 
 			<main class="mdl-layout__content">
 				<div class="page-content">
 
 					<%= image_tag "logo.jpeg" %>
+
+
 					<%= yield %>
 
 				</div>
 			</main>
+
 		</div>
 
-		<!-- <%= render 'layouts/footer' %> -->
 	</body>
 </html>

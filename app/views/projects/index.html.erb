@@ -1,5 +1,6 @@
 <%- model_class = Project -%>
 
+
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
 
@@ -9,7 +10,7 @@
 			<% @projects.each do |project| %>
 				<tr>
 					<td class="mdl-data-table__cell--non-numeric">
-						<span class ="mdl-badge" data-badge = <%= project.tasks.unfinished.count %>/<%= project.tasks.count %> >
+						<span class ="mdl-badge" data-badge = <%= project.tasks.unfinished.count %>>
 							<%= link_to project.title, project_path(project.id) %>
 						</span>
 					</td>
@@ -26,18 +27,12 @@
 		</tbody>
 	</table>
 
-	<div class="mdl-cell mdl-cell--1-col"></div>
-
-</div>
-
-<div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--10-col"></div>
-
 	<div class="mdl-cell mdl-cell--1-col">
-		<%= link_to "add", new_project_path,
-		:class => 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored material-icons' %>
+		<a href="projects/new">
+			<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" >
+				<i class="material-icons">add</i>
+			</button>
+		</a>
 	</div>
-
-	<div class="mdl-cell mdl-cell--1-col"></div>
 
 </div>
