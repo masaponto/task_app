@@ -1,5 +1,5 @@
 # Task app
-  To do app using Ruby on Rails
+  To do app using Ruby on Rails  
   This software is under construction
 
 ## Development Environment 
